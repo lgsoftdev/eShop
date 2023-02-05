@@ -14,7 +14,6 @@ const HomePage = () => {
 
   const handleShopNow = (event) => {
     event.preventDefault();
-    console.log(listRef.current.offsetHeight);
     window.scrollTo({
       top: listRef.current.offsetHeight - 50,
       behaviour: 'smooth',

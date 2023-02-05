@@ -1,4 +1,62 @@
+@import '../src/UtilsStyles.module.scss';
+
 .AddToCartPage {
-  position: relative;
-  max-width: 1200px;
+  &__section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 50px;
+
+    @media only screen and (max-width: $media_max_width) {
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+    }
+
+    & img {
+      height: 80vh;
+      border-radius: 20px;
+
+      @media only screen and (max-width: $media_max_width) {
+        width: 90vw;
+      }
+    }
+
+    &_name {
+      font-weight: bold;
+      font-size: xx-large;
+    }
+
+    &_price {
+      font-weight: bold;
+      font-size: xx-large;
+      margin-bottom: 20px;
+    }
+
+    &_sizeBtn {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+      margin-bottom: 30px;
+    }
+
+    &_addToCartBtn {
+      width: 50%;
+      background-color: orange;
+      color: white;
+      font-size: large;
+      border: none;
+      height: 50px;
+      margin-bottom: 30px;
+    }
+
+    &_warning {
+      padding: 0;
+    }
+  }
+}
+
+.button_green {
+  background-color: green;
+  border: none;
+  color: white;
+  font-size: large;
 }
