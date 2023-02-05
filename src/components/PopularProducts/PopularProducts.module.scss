@@ -1,0 +1,30 @@
+@import '../src/UtilsStyles.module.scss';
+
+.PopularProducts {
+  background-color: lightyellow;
+  border: 1px solid gold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+  padding: 20px 0 20px 0;
+
+  @media only screen and (max-width: $media_max_width) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__productdetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
