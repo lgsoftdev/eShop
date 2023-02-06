@@ -1,0 +1,15 @@
+.HeaderLinks {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & label {
+    position: relative;
+    top: -45px;
+    left: -20px;
+    color: red;
+    font-size: large;
+    font-weight: bold;
+  }
+}
