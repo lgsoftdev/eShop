@@ -18,6 +18,7 @@ const AddToCartPage = () => {
   const handleSizeClick = (event) => {
     event.preventDefault();
     const targetId = event.target.id;
+    messageDivRef.current.classList.add(styles.display_none);
     for (let i = 0; i < inventory.length; i++) {
       if (i === Number(targetId)) {
         selectedSizeRef.current = event.target.outerText;
@@ -63,6 +64,8 @@ const AddToCartPage = () => {
         cartCopy[cartCopy.length] = {
           id: params.id,
           name: product.name,
+          imageUrl: product.imageUrl,
+          price: product.price,
           order: [{ size: Number(selectedSizeRef.current), quantity: 1 }],
         };
       }

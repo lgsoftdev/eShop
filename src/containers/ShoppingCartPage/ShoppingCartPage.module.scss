@@ -1,0 +1,46 @@
+@import '../src/UtilsStyles.module.scss';
+
+.ShoppingCartPage {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+
+  & header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__checkoutPanel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &_proceedToCheckout {
+    background-color: orange;
+    color: white;
+    font-size: large;
+    border: none;
+    height: 50px;
+    padding: 0 20px 0 20px;
+
+    @media only screen and (max-width: $media_max_width) {
+      height: fit-content;
+      width: 130px;
+      padding: 0;
+    }
+  }
+
+  & section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+}

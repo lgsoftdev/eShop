@@ -1,0 +1,66 @@
+@import '../src/UtilsStyles.module.scss';
+
+.ShoppingCartItem {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 10px 20px 20px 20px;
+
+  &_remove {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  &_productImage {
+    width: 180px;
+    border-radius: 20px;
+
+    @media only screen and (max-width: $media_max_width) {
+      width: 130px;
+    }
+  }
+
+  &__productDetails {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+
+    @media only screen and (max-width: $media_max_width) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  }
+
+  &__qtyPanel {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    & div {
+      margin-top: 5px;
+
+      & button {
+        height: 35px;
+        width: 35px;
+        border-radius: 0;
+        border: none;
+        background-color: lightgray;
+        font-size: large;
+      }
+
+      & input {
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        border: 1px solid lightgray;
+      }
+    }
+  }
+
+  & label {
+    font-weight: bold;
+  }
+}

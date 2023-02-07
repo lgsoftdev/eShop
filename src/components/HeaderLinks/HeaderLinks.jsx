@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../context/CartProvider';
 
 const HeaderLinks = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, setTotal } = useContext(CartContext);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
