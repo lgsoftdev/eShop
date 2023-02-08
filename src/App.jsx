@@ -5,7 +5,7 @@ import AddToCartPage from './containers/AddToCartPage/AddToCartPage';
 import ShoppingCartPage from './containers/ShoppingCartPage/ShoppingCartPage';
 import CheckoutPage from './containers/CheckoutPage/CheckoutPage';
 import CartProvider from './context/CartProvider';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (

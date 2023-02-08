@@ -23,7 +23,7 @@ const HeaderLinks = () => {
   return (
     <header className={styles.HeaderLinks}>
       <NavLink to="/">
-        <h1>flip-flops</h1>
+        <div>flip-flops</div>
       </NavLink>
       <NavLink to="/shoppingCart">
         <img src={shopping_cart} />

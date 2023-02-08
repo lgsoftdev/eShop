@@ -6,6 +6,7 @@ import {
   query,
   where,
   orderBy,
+  updateDoc,
   writeBatch,
 } from 'firebase/firestore';
 import db from '../../config/firebase';
@@ -29,6 +30,13 @@ export const getProductById = async (id) => {
   const docRef = doc(db, 'products', id);
   const docSnap = await getDoc(docRef);
   return docSnap.data();
+};
+
+//UPDATE Favourited
+export const updateFavourited = async (id, favourite) => {
+  //Get Document Reference
+  const docRef = doc(db, 'products', id);
+  await updateDoc(docRef, { favourited: favourite });
 };
 
 export const getInventoryByProductId = async (productId) => {
@@ -57,12 +65,6 @@ export const getInventoryByProductIdAndSize = async (productId, size) => {
   const querySnapshot = await getDocs(q);
   const docs = querySnapshot.docs;
   return docs[0].data();
-};
-
-const getInventoryByDocumentId = async (inventoryId) => {
-  const docRef = doc(db, 'inventory', inventoryId);
-  const docSnap = await getDoc(docRef);
-  return docSnap; //.data();
 };
 
 export const batchQuantityUpdate = async (cart) => {

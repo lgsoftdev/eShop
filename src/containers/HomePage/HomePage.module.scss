@@ -6,7 +6,7 @@
   &__section_top {
     & img {
       position: relative;
-      top: -50px;
+      top: -20px;
       z-index: 1;
       max-width: 100%;
       height: auto;
@@ -15,7 +15,7 @@
     & button {
       z-index: 10;
       position: relative;
-      top: 50px;
+      top: 65px;
       left: 50px;
       background-color: black;
       color: white;
@@ -24,7 +24,7 @@
       border-radius: 10px;
 
       @media only screen and (max-width: $media_max_width) {
-        top: 20px;
+        top: 40px;
         left: 20px;
       }
     }
@@ -36,7 +36,6 @@
   }
 
   &__section_products {
-    display: flex;
-    flex-direction: row;
+    @include displayFlex(row);
   }
 }

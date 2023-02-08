@@ -12,7 +12,7 @@
     animation: moveBack 2s;
   }
 
-  & img {
+  &_imgProd {
     width: 250px;
     border-radius: 20px;
 
@@ -21,15 +21,29 @@
     }
   }
 
+  &_imgFave {
+    margin-left: 5px;
+    padding: 10px;
+  }
+
   &__name {
     font-weight: bold;
     font-size: large;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  &__namePricePanel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 }
 
 @keyframes moveForward {
   from {
-    right: 100px;
+    right: 50px;
   }
   to {
     right: 0px;
@@ -38,7 +52,7 @@
 
 @keyframes moveBack {
   from {
-    left: 100px;
+    left: 50px;
   }
   to {
     left: 0px;

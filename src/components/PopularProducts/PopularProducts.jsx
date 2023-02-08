@@ -1,19 +1,19 @@
 import styles from './PopularProducts.module.scss';
 import ProductDetails from '../ProductDetails/ProductDetails';
 import CarouselButtons from '../CarouselButtons/CarouselButtons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const PopularProducts = ({ products }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageDirection, setImageDirection] = useState('');
 
   const handleArrowClick = (direction) => {
-    if (direction === 'forward' && currentIndex < products.length - 1) {
+    if (direction === 'forward' && Number(currentIndex) < products.length - 1) {
       setImageDirection(direction);
-      setCurrentIndex(currentIndex + 1);
-    } else if (direction === 'back' && currentIndex > 0) {
+      setCurrentIndex(Number(currentIndex) + 1);
+    } else if (direction === 'back' && Number(currentIndex) > 0) {
       setImageDirection(direction);
-      setCurrentIndex(currentIndex - 1);
+      setCurrentIndex(Number(currentIndex) - 1);
     }
   };
 
@@ -24,8 +24,11 @@ const PopularProducts = ({ products }) => {
   return (
     <section className={styles.PopularProducts}>
       <header className={styles.PopularProducts__header}>
-        <h1>VERY</h1>
-        <h1>POPULAR!</h1>
+        <div>BE</div>
+        <div>READY</div>
+        <div>FOR</div>
+        <div>SUMMER</div>
+        <div>2023!</div>
       </header>
       <section className={styles.PopularProducts__productdetails}>
         {products.length > 0 && (

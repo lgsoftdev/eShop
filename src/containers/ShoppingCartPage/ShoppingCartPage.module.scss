@@ -1,17 +1,25 @@
 @import '../src/UtilsStyles.module.scss';
 
 .ShoppingCartPage {
-  display: flex;
-  flex-direction: column;
+  @include displayFlex(column);
   width: 100vw;
 
-  & header {
+  @media only screen and (max-width: $media_max_width) {
     width: 100%;
+  }
+
+  & header {
+    max-width: 1200px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and (max-width: $media_max_width) {
+      max-width: 100%;
+      margin-top: 30px;
+    }
   }
 
   &__checkoutPanel {

@@ -1,1 +1,15 @@
 $media_max_width: 600px;
+
+$color_shadow: rgba(0, 0, 0, 0.5);
+
+@mixin displayFlex($direction, $justify: center, $align_items: normal) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align_items;
+}
+
+@mixin displayGrid($columns) {
+  display: grid;
+  grid-template-columns: $columns;
+}

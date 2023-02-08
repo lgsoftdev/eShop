@@ -4,39 +4,25 @@ import { NavLink } from 'react-router-dom';
 import { CartContext } from '../../context/CartProvider';
 import ShoppingCartItem from '../../components/ShoppingCartItem/ShoppingCartItem';
 import ShoppingCartTotal from '../../components/ShoppingCartTotal/ShoppingCartTotal';
-import { batchQuantityUpdate } from '../../services/data';
 
 const ShoppingCartPage = () => {
   const { cart } = useContext(CartContext);
 
-  const handleCheckoutClick = (event) => {
-    event.preventDefault();
-
-    const updateData = async () => {
-      await batchQuantityUpdate(cart);
-    };
-
-    try {
-      updateData();
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   return (
     <main className={styles.ShoppingCartPage}>
       <header>
-        <div>Continue Shopping</div>
+        <NavLink to="/">Continue Shopping</NavLink>
         <div className={styles.ShoppingCartPage__checkoutPanel}>
-          <NavLink to="/checkout">
-            <button
-              type="button"
-              className={styles.ShoppingCartPage_proceedToCheckout}
-            >
-              PROCEED TO CHECKOUT
-            </button>
-          </NavLink>
-
+          {cart.length > 0 && (
+            <NavLink to="/checkout">
+              <button
+                type="button"
+                className={styles.ShoppingCartPage_proceedToCheckout}
+              >
+                PROCEED TO CHECKOUT
+              </button>
+            </NavLink>
+          )}
           <ShoppingCartTotal />
         </div>
       </header>
