@@ -24,7 +24,7 @@ const ShoppingCartTotal = () => {
     } else {
       setTotal(0);
     }
-  }, []);
+  }, [cart]);
 
   return (
     <div className={styles.ShoppingCartTotal}>

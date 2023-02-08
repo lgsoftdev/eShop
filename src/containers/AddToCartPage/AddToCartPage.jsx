@@ -13,6 +13,7 @@ const AddToCartPage = () => {
   const [inventory, setInventory] = useState(undefined);
   const sizeButtonsRef = useRef([]);
   const selectedSizeRef = useRef(undefined);
+  const inventoryIdRef = useRef(undefined);
   const messageDivRef = useRef(undefined);
 
   const handleSizeClick = (event) => {
@@ -22,6 +23,8 @@ const AddToCartPage = () => {
     for (let i = 0; i < inventory.length; i++) {
       if (i === Number(targetId)) {
         selectedSizeRef.current = event.target.outerText;
+        inventoryIdRef.current =
+          sizeButtonsRef[i].current.getAttribute('data-key');
         sizeButtonsRef[i].current.classList.add(styles.button_green);
       } else {
         sizeButtonsRef[i].current.classList.remove(styles.button_green);
@@ -55,6 +58,7 @@ const AddToCartPage = () => {
             cartCopy[idInCart].order[length] = {
               size: Number(selectedSizeRef.current),
               quantity: 1,
+              inventoryId: inventoryIdRef.current,
             };
           }
         }
@@ -66,7 +70,13 @@ const AddToCartPage = () => {
           name: product.name,
           imageUrl: product.imageUrl,
           price: product.price,
-          order: [{ size: Number(selectedSizeRef.current), quantity: 1 }],
+          order: [
+            {
+              size: Number(selectedSizeRef.current),
+              quantity: 1,
+              inventoryId: inventoryIdRef.current,
+            },
+          ],
         };
       }
 
@@ -108,6 +118,7 @@ const AddToCartPage = () => {
                 return item.quantity > 0 ? (
                   <button
                     key={item.id}
+                    data-key={item.id}
                     id={index}
                     type="button"
                     className={styles.AddToCartPage__section_sizeBtn}

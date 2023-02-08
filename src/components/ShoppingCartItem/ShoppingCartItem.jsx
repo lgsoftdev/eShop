@@ -1,7 +1,8 @@
 import styles from './ShoppingCartItem.module.scss';
 import remove from '../../assets/remove.png';
-import { useContext } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { CartContext } from '../../context/CartProvider';
+import { getInventoryByProductIdAndSize } from '../../services/data';
 
 const ShoppingCartItem = ({
   productId,
@@ -11,31 +12,64 @@ const ShoppingCartItem = ({
   size,
   quantity,
 }) => {
-  const { cart, setCart, total, setTotal } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
+  const [input, setInput] = useState(quantity);
+  const [warning, setWarning] = useState('');
 
   const handleRemoveClick = () => {
     //Remove item from cart.
     const newCart = [...cart];
-    let minusAmount = 0;
-    cart.forEach((product, prodIndex) => {
+    newCart.forEach((product, prodIndex) => {
       if (product.id === productId) {
         product.order.forEach((item, itemIndex) => {
           if (Number(item.size) === Number(size)) {
-            minusAmount = Number(item.quantity) * Number(product.price);
             product.order.splice(itemIndex, itemIndex + 1);
           }
         });
-        if (product.order.length === 0) cart.splice(prodIndex, prodIndex + 1);
+        if (product.order.length === 0)
+          newCart.splice(prodIndex, prodIndex + 1);
       }
     });
 
     setCart(newCart);
-
-    const newTotal = total - minusAmount;
-    setTotal(newTotal);
   };
 
-  const handleQuantityChange = () => {};
+  const handleQuantityChange = (event) => {
+    let value = Number(event.target.value);
+    if (value <= 0) value = 1;
+    const getData = async () => {
+      const inventory = await getInventoryByProductIdAndSize(productId, size);
+      if (value > inventory.quantity) {
+        value = inventory.quantity;
+        setWarning(`Only ${value} left in stock.`);
+      } else {
+        setWarning('');
+      }
+
+      //Note: useState needed to be able to change text in input field.
+      setInput(value);
+
+      updateOrderQuantity(value);
+    };
+
+    getData();
+  };
+
+  const updateOrderQuantity = (newQuantity) => {
+    //Update quantity in cart.
+    const newCart = [...cart];
+    newCart.forEach((product) => {
+      if (product.id === productId) {
+        product.order.forEach((item) => {
+          if (Number(item.size) === Number(size)) {
+            item.quantity = newQuantity;
+          }
+        });
+      }
+    });
+
+    setCart(newCart);
+  };
 
   return (
     <main className={styles.ShoppingCartItem}>
@@ -52,16 +86,15 @@ const ShoppingCartItem = ({
           <div className={styles.ShoppingCartItem__qtyPanel}>
             <label>Qty</label>
             <div>
-              <button type="button">-</button>
               <input
                 type="number"
-                value={quantity}
+                value={input}
                 onChange={handleQuantityChange}
               />
-              <button type="button">+</button>
             </div>
           </div>
           <label>{`$${(price * quantity).toFixed(2)}`}</label>
+          <div className={styles.ShoppingCartItem__warning}>{warning}</div>
         </div>
       </section>
     </main>

@@ -5,6 +5,7 @@
   flex-direction: column;
   border: 1px solid black;
   padding: 10px 20px 20px 20px;
+  width: 320px;
 
   &_remove {
     display: flex;
@@ -42,18 +43,10 @@
     & div {
       margin-top: 5px;
 
-      & button {
-        height: 35px;
-        width: 35px;
-        border-radius: 0;
-        border: none;
-        background-color: lightgray;
-        font-size: large;
-      }
-
       & input {
-        height: 30px;
-        width: 30px;
+        height: 50px;
+        width: 70px;
+        font-size: large;
         text-align: center;
         border: 1px solid lightgray;
       }
@@ -63,4 +56,21 @@
   & label {
     font-weight: bold;
   }
+
+  &__warning {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 75px;
+  }
+}
+
+.display_none {
+  display: none;
+}
+
+//SOURCE:https: //www.w3schools.blog/css-hide-number-input-arrows
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
 }

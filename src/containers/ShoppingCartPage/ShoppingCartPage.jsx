@@ -1,23 +1,42 @@
 import styles from './ShoppingCartPage.module.scss';
 import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { CartContext } from '../../context/CartProvider';
 import ShoppingCartItem from '../../components/ShoppingCartItem/ShoppingCartItem';
 import ShoppingCartTotal from '../../components/ShoppingCartTotal/ShoppingCartTotal';
+import { batchQuantityUpdate } from '../../services/data';
 
 const ShoppingCartPage = () => {
   const { cart } = useContext(CartContext);
+
+  const handleCheckoutClick = (event) => {
+    event.preventDefault();
+
+    const updateData = async () => {
+      await batchQuantityUpdate(cart);
+    };
+
+    try {
+      updateData();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <main className={styles.ShoppingCartPage}>
       <header>
         <div>Continue Shopping</div>
         <div className={styles.ShoppingCartPage__checkoutPanel}>
-          <button
-            type="button"
-            className={styles.ShoppingCartPage_proceedToCheckout}
-          >
-            PROCEED TO CHECKOUT
-          </button>
+          <NavLink to="/checkout">
+            <button
+              type="button"
+              className={styles.ShoppingCartPage_proceedToCheckout}
+            >
+              PROCEED TO CHECKOUT
+            </button>
+          </NavLink>
+
           <ShoppingCartTotal />
         </div>
       </header>
