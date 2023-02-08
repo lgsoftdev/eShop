@@ -1,0 +1,76 @@
+@import '../src/UtilsStyles.module.scss';
+
+.ShoppingCartItem {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 10px 20px 20px 20px;
+  width: 320px;
+
+  &_remove {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  &_productImage {
+    width: 180px;
+    border-radius: 20px;
+
+    @media only screen and (max-width: $media_max_width) {
+      width: 130px;
+    }
+  }
+
+  &__productDetails {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+
+    @media only screen and (max-width: $media_max_width) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  }
+
+  &__qtyPanel {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    & div {
+      margin-top: 5px;
+
+      & input {
+        height: 50px;
+        width: 70px;
+        font-size: large;
+        text-align: center;
+        border: 1px solid lightgray;
+      }
+    }
+  }
+
+  & label {
+    font-weight: bold;
+  }
+
+  &__warning {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 75px;
+  }
+}
+
+.display_none {
+  display: none;
+}
+
+//SOURCE:https: //www.w3schools.blog/css-hide-number-input-arrows
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
+}

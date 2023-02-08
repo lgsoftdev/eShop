@@ -1,0 +1,11 @@
+@import '../src/UtilsStyles.module.scss';
+
+.ShoppingCartTotal {
+  width: 150px;
+  text-align: left;
+  margin-left: 50px;
+
+  @media only screen and (max-width: $media_max_width) {
+    margin-left: 10px;
+  }
+}
