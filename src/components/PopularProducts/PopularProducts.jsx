@@ -1,9 +1,9 @@
-import styles from './FavouritedProducts.module.scss';
+import styles from './PopularProducts.module.scss';
 import ProductDetails from '../ProductDetails/ProductDetails';
 import CarouselButtons from '../CarouselButtons/CarouselButtons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const FavouritedProducts = ({ products, onFavouriteClick }) => {
+const PopularProducts = ({ products }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageDirection, setImageDirection] = useState('');
 
@@ -21,26 +21,21 @@ const FavouritedProducts = ({ products, onFavouriteClick }) => {
     setCurrentIndex(index);
   };
 
-  const handleFavouriteClick = (productId, favourite) => {
-    onFavouriteClick(productId, favourite);
-  };
-
   return (
-    <section className={styles.FavouritedProducts}>
-      <header className={styles.FavouritedProducts__header}>
-        <div>GET</div>
+    <section className={styles.PopularProducts}>
+      <header className={styles.PopularProducts__header}>
+        <div>BE</div>
         <div>READY</div>
         <div>FOR</div>
         <div>SUMMER</div>
-        <div>2024!</div>
+        <div>2023!</div>
       </header>
-      <section className={styles.FavouritedProducts__productdetails}>
+      <section className={styles.PopularProducts__productdetails}>
         {products.length > 0 && (
           <ProductDetails
             key={products[currentIndex].id}
             details={products[currentIndex]}
             direction={imageDirection}
-            onFavouriteClick={handleFavouriteClick}
           />
         )}
         <CarouselButtons
@@ -54,4 +49,4 @@ const FavouritedProducts = ({ products, onFavouriteClick }) => {
   );
 };
 
-export default FavouritedProducts;
+export default PopularProducts;

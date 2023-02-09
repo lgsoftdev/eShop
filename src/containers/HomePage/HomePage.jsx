@@ -1,12 +1,13 @@
 import thebeach from '../../assets/thebeach.jpg';
 import styles from './HomePage.module.scss';
-import FavouritedProducts from '../../components/FavouritedProducts/FavouritedProducts';
+import PopularProducts from '../../components/PopularProducts/PopularProducts';
 import ProductsList from '../../components/ProductsList/ProductsList';
-import { useState, useEffect, useRef } from 'react';
-import { getAllProducts, updateFavourited } from '../../services/data';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { getAllProducts } from '../../services/data';
+import { CartContext } from '../../context/CartProvider';
 
 const HomePage = () => {
-  const [favesUpdateCounter, setFavesUpdateCounter] = useState(0);
+  const { favesUpdateCounter } = useContext(CartContext);
   const [allProducts, setAllProducts] = useState(undefined);
   const favourited = allProducts
     ? allProducts.filter((item) => item.favourited)
@@ -19,13 +20,6 @@ const HomePage = () => {
       top: listRef.current.offsetHeight - 50,
       behaviour: 'smooth',
     });
-  };
-
-  const handleFavouriteClick = async (productId, favourite) => {
-    await updateFavourited(productId, favourite);
-    const count = favesUpdateCounter + 1;
-    //Set to cause re-render.
-    setFavesUpdateCounter(count);
   };
 
   useEffect(() => {
@@ -45,17 +39,9 @@ const HomePage = () => {
         </button>
         <img src={thebeach} alt="flip-flops on the beach" />
       </section>
-      {favourited.length > 0 && (
-        <FavouritedProducts
-          products={favourited}
-          onFavouriteClick={handleFavouriteClick}
-        />
-      )}
+      {favourited.length > 0 && <PopularProducts products={favourited} />}
       <section ref={listRef}>
-        <ProductsList
-          products={allProducts}
-          onFavouriteClick={handleFavouriteClick}
-        />
+        <ProductsList products={allProducts} />
       </section>
     </main>
   );
