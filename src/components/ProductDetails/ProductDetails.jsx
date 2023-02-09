@@ -16,12 +16,12 @@ const ProductDetails = ({ details, direction = '' }) => {
       ? styles.ProductDetails__moveForward
       : styles.ProductDetails__moveBack;
 
-  const handleFavouriteClick = (event) => {
+  const handleFavouriteClick = async (event) => {
     event.preventDefault();
     const src = event.target.src;
     let favourite = false;
     if (src.indexOf('no') > -1) favourite = true;
-    updateFavourited(details.id, favourite);
+    await updateFavourited(details.id, favourite);
     const count = favesUpdateCounter + 1;
     setFavesUpdateCounter(count);
   };
