@@ -2,8 +2,13 @@ import styles from './ProductDetails.module.scss';
 import { NavLink } from 'react-router-dom';
 import faveYes from '../../assets/fave-yes.png';
 import faveNo from '../../assets/fave-no.png';
+import { updateFavourited } from '../../services/data';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartProvider';
 
-const ProductDetails = ({ details, direction = '', onFavouriteClick }) => {
+const ProductDetails = ({ details, direction = '' }) => {
+  const { favesUpdateCounter, setFavesUpdateCounter } = useContext(CartContext);
+
   const moveStyle =
     direction === ''
       ? direction
@@ -16,7 +21,9 @@ const ProductDetails = ({ details, direction = '', onFavouriteClick }) => {
     const src = event.target.src;
     let favourite = false;
     if (src.indexOf('no') > -1) favourite = true;
-    onFavouriteClick(details.id, favourite);
+    updateFavourited(details.id, favourite);
+    const count = favesUpdateCounter + 1;
+    setFavesUpdateCounter(count);
   };
 
   return (
