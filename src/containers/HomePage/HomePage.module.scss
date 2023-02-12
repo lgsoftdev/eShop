@@ -29,13 +29,4 @@
       }
     }
   }
-
-  &__section_carousel {
-    border: 1px solid lightblue;
-    margin-bottom: 50px;
-  }
-
-  &__section_products {
-    @include displayFlex(row);
-  }
 }

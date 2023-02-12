@@ -1,6 +1,10 @@
 $media_max_width: 600px;
 
-$color_shadow: rgba(0, 0, 0, 0.5);
+//margins and paddings
+$px_xsmall: 5px;
+$px_small: 10px;
+$px_medium: 20px;
+$px_large: 50px;
 
 @mixin displayFlex($direction, $justify: center, $align_items: normal) {
   display: flex;

@@ -16,6 +16,14 @@ const AddToCartPage = () => {
   const inventoryIdRef = useRef(undefined);
   const messageDivRef = useRef(undefined);
 
+  const isStockAvailable = (size, qty) => {
+    const data = inventory.filter((item) => item.size === Number(size));
+    if (data[0].quantity > Number(qty)) {
+      return true;
+    }
+    return false;
+  };
+
   const handleSizeClick = (event) => {
     event.preventDefault();
     const targetId = event.target.id;
@@ -34,10 +42,13 @@ const AddToCartPage = () => {
 
   const handleAddToCartClick = (event) => {
     event.preventDefault();
+    messageDivRef.current.classList.remove(styles.message_green);
+    messageDivRef.current.classList.remove(styles.display_none);
     if (!selectedSizeRef.current) {
       messageDivRef.current.innerText = 'Please select a size.';
       messageDivRef.current.classList.add(styles.message_red);
     } else {
+      let hasStock = true;
       let addNew = true;
       const cartCopy = [...cart];
       if (cartCopy.length > 0) {
@@ -51,7 +62,16 @@ const AddToCartPage = () => {
           );
           if (sizeInCart >= 0) {
             //Add quantity of 1 to existing order for the same product and size.
-            cartCopy[idInCart].order[sizeInCart].quantity += 1;
+            if (
+              isStockAvailable(
+                selectedSizeRef.current,
+                cartCopy[idInCart].order[sizeInCart].quantity
+              )
+            ) {
+              cartCopy[idInCart].order[sizeInCart].quantity += 1;
+            } else {
+              hasStock = false;
+            }
           } else {
             //Add size and quantity to existing product in cart.
             const length = cartCopy[idInCart].order.length;
@@ -80,12 +100,16 @@ const AddToCartPage = () => {
         };
       }
 
-      setCart(cartCopy);
+      if (!hasStock) {
+        messageDivRef.current.innerText = 'No stock available.';
+        messageDivRef.current.classList.add(styles.message_red);
+      } else {
+        setCart(cartCopy);
 
-      messageDivRef.current.innerText = 'Item added to cart.';
-      messageDivRef.current.classList.add(styles.message_green);
+        messageDivRef.current.innerText = 'Item added to cart.';
+        messageDivRef.current.classList.add(styles.message_green);
+      }
     }
-    messageDivRef.current.classList.remove(styles.display_none);
   };
 
   useEffect(() => {

@@ -13,8 +13,8 @@
   }
 
   &_imgProd {
-    width: 250px;
-    border-radius: 20px;
+    height: 200px;
+    border-radius: $px_medium;
 
     @media only screen and (max-width: $media_max_width) {
       width: 150px;
@@ -22,28 +22,24 @@
   }
 
   &_imgFave {
-    margin-left: 5px;
-    padding: 10px;
+    margin-left: $px_xsmall;
+    padding: $px_small;
   }
 
   &__name {
+    @include displayFlex(row, center);
     font-weight: bold;
     font-size: large;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
   }
 
   &__namePricePanel {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    @include displayFlex(row, center);
   }
 }
 
 @keyframes moveForward {
   from {
-    right: 50px;
+    right: 40px;
   }
   to {
     right: 0px;
@@ -52,7 +48,7 @@
 
 @keyframes moveBack {
   from {
-    left: 50px;
+    left: 40px;
   }
   to {
     left: 0px;
@@ -62,7 +58,7 @@
 @media only screen and (max-width: $media_max_width) {
   @keyframes moveForward {
     from {
-      right: 45px;
+      right: 80px;
     }
     to {
       right: 0px;
@@ -71,7 +67,7 @@
 
   @keyframes moveBack {
     from {
-      left: 45px;
+      left: 80px;
     }
     to {
       left: 0px;

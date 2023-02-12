@@ -1,13 +1,11 @@
 import thebeach from '../../assets/thebeach.jpg';
 import styles from './HomePage.module.scss';
-import PopularProducts from '../../components/PopularProducts/PopularProducts';
+import FavouritedProducts from '../../components/FavouritedProducts/FavouritedProducts';
 import ProductsList from '../../components/ProductsList/ProductsList';
-import { useState, useEffect, useRef, useContext } from 'react';
 import { getAllProducts } from '../../services/data';
-import { CartContext } from '../../context/CartProvider';
+import { useState, useEffect, useRef } from 'react';
 
 const HomePage = () => {
-  const { favesUpdateCounter } = useContext(CartContext);
   const [allProducts, setAllProducts] = useState(undefined);
   const favourited = allProducts
     ? allProducts.filter((item) => item.favourited)
@@ -29,7 +27,7 @@ const HomePage = () => {
     };
 
     getData();
-  }, [favesUpdateCounter]);
+  }, []);
 
   return (
     <main className={styles.HomePage}>
@@ -39,7 +37,7 @@ const HomePage = () => {
         </button>
         <img src={thebeach} alt="flip-flops on the beach" />
       </section>
-      {favourited.length > 0 && <PopularProducts products={favourited} />}
+      {favourited.length > 0 && <FavouritedProducts products={favourited} />}
       <section ref={listRef}>
         <ProductsList products={allProducts} />
       </section>

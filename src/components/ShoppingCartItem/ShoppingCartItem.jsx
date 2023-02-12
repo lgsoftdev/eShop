@@ -1,6 +1,6 @@
 import styles from './ShoppingCartItem.module.scss';
 import remove from '../../assets/remove.png';
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartProvider';
 import { getInventoryByProductIdAndSize } from '../../services/data';
 
