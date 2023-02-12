@@ -5,7 +5,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 50px;
+  gap: $px_large;
 
   @media only screen and (max-width: $media_max_width) {
     gap: 40px;

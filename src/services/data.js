@@ -11,18 +11,31 @@ import {
 } from 'firebase/firestore';
 import db from '../../config/firebase';
 
-//GET all products
-export const getAllProducts = async () => {
-  //Get collection reference
-  const collectionRef = collection(db, 'products');
-  const querySnapshot = await getDocs(collectionRef);
-  const docs = querySnapshot.docs;
+const getDataArray = (docs) => {
   const data = docs.map((item) => {
     const object = { ...item.data() };
     object.id = item.id;
     return object;
   });
   return data;
+};
+
+//GET all products
+export const getAllProducts = async () => {
+  //Get collection reference
+  const collectionRef = collection(db, 'products');
+  const querySnapshot = await getDocs(collectionRef);
+  return getDataArray(querySnapshot.docs);
+};
+
+export const getFavouritedProducts = async () => {
+  const q = query(
+    collection(db, 'products'),
+    where('favourited', '==', true),
+    orderBy('name', 'asc')
+  );
+  const querySnapshot = await getDocs(q);
+  return getDataArray(querySnapshot.docs);
 };
 
 export const getProductById = async (id) => {
@@ -46,13 +59,7 @@ export const getInventoryByProductId = async (productId) => {
     orderBy('size', 'asc')
   );
   const querySnapshot = await getDocs(q);
-  const docs = querySnapshot.docs;
-  const data = docs.map((item) => {
-    const object = { ...item.data() };
-    object.id = item.id;
-    return object;
-  });
-  return data;
+  return getDataArray(querySnapshot.docs);
 };
 
 //Do this way for purpose of having an example with more than one where clause.

@@ -4,18 +4,16 @@
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  padding: 10px 20px 20px 20px;
+  padding: $px_small $px_medium $px_medium $px_medium;
   width: 320px;
 
   &_remove {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    @include displayFlex(row, flex-end);
   }
 
   &_productImage {
     width: 180px;
-    border-radius: 20px;
+    border-radius: $px_medium;
 
     @media only screen and (max-width: $media_max_width) {
       width: 130px;
@@ -23,28 +21,28 @@
   }
 
   &__productDetails {
-    padding-top: 10px;
+    padding-top: $px_small;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 20px;
+    gap: $px_medium;
 
     @media only screen and (max-width: $media_max_width) {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: $px_medium;
     }
   }
 
   &__qtyPanel {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: $px_small;
+    margin-bottom: $px_medium;
 
     & div {
-      margin-top: 5px;
+      margin-top: $px_xsmall;
 
       & input {
-        height: 50px;
+        height: $px_large;
         width: 70px;
         font-size: large;
         text-align: center;
@@ -60,7 +58,7 @@
   &__warning {
     color: green;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: $px_medium;
     width: 75px;
   }
 }

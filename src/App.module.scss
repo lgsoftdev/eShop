@@ -3,12 +3,10 @@
 .App {
   padding: 2rem;
   max-width: 1200px;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   @include displayFlex(column, center);
 
   @media only screen and (max-width: $media_max_width) {
+    max-width: 100vw;
     padding: 1rem;
   }
 }

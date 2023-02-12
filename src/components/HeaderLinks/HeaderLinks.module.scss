@@ -1,17 +1,21 @@
+@import '../src/UtilsStyles.module.scss';
+
 .HeaderLinks {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  @include displayFlex(row, space-between);
+
+  & a {
+    text-decoration: none;
+  }
 
   & div {
     //SOURCE: https://blog.logrocket.com/five-cool-css-header-styles-with-cross-browser-compatibility/
     font-size: 50px;
     font-weight: 600;
     font-family: 'Niconne', cursive;
-    color: #e0d6e9;
-    text-shadow: 2px 2px 0px #957dad, 4px 4px 0px #ee4b2b, 6px 6px 0px #00c2cb,
-      8px 8px 0px #ff7f50, 10px 10px 0px #553c9a;
+    color: rgb(143, 228, 216);
+    text-shadow: 2px 2px 0px black, 4px 4px 0px gold, 6px 6px 0px blue,
+      8px 8px 0px gold;
   }
 
   & label {
