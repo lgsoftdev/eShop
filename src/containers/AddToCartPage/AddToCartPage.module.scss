@@ -38,6 +38,7 @@
       height: $px_large;
       margin-right: $px_small;
       margin-bottom: 30px;
+      cursor: pointer;
     }
 
     &_addToCartBtn {
@@ -48,6 +49,7 @@
       border: none;
       height: $px_large;
       margin-bottom: 30px;
+      cursor: pointer;
     }
 
     &_warning {

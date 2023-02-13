@@ -53,6 +53,7 @@ const FavouritedProducts = ({ products }) => {
               key={favouritedProducts[currentIndex].id}
               details={favouritedProducts[currentIndex]}
               direction={imageDirection}
+              showFavouritedFlag={false}
             />
             <CarouselButtons
               products={favouritedProducts}

@@ -2,7 +2,11 @@ import styles from './ProductDetails.module.scss';
 import { NavLink } from 'react-router-dom';
 import FavouritedFlag from '../FavouritedFlag/FavouritedFlag';
 
-const ProductDetails = ({ details, direction = '' }) => {
+const ProductDetails = ({
+  details,
+  direction = '',
+  showFavouritedFlag = true,
+}) => {
   const moveStyle =
     direction === ''
       ? direction
@@ -25,10 +29,12 @@ const ProductDetails = ({ details, direction = '' }) => {
           <div className={styles.ProductDetails__name}>{details.name}</div>
           <div>{`$${details.price.toFixed(2)}`}</div>
         </div>
-        <FavouritedFlag
-          productId={details.id}
-          isAFavourite={details.favourited}
-        />
+        {showFavouritedFlag && (
+          <FavouritedFlag
+            productId={details.id}
+            isAFavourite={details.favourited}
+          />
+        )}
       </div>
     </div>
   );

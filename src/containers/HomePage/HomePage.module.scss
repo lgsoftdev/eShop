@@ -22,6 +22,7 @@
       width: 100px;
       height: 45px;
       border-radius: 10px;
+      cursor: pointer;
 
       @media only screen and (max-width: $media_max_width) {
         top: 40px;
