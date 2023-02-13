@@ -34,34 +34,36 @@ const FavouritedProducts = ({ products }) => {
       setFavouritedProducts(products);
     };
 
-    if (favouritedUpdateCounter > 0) getData();
+    getData();
   }, [favouritedUpdateCounter]);
 
   return (
-    favouritedProducts.length > 0 && (
-      <section className={styles.FavouritedProducts}>
-        <header className={styles.FavouritedProducts__header}>
-          <div>GET</div>
-          <div>READY</div>
-          <div>FOR</div>
-          <div>SUMMER</div>
-          <div>2024!</div>
-        </header>
-        <section className={styles.FavouritedProducts__productdetails}>
-          <ProductDetails
-            key={favouritedProducts[currentIndex].id}
-            details={favouritedProducts[currentIndex]}
-            direction={imageDirection}
-          />
-          <CarouselButtons
-            products={favouritedProducts}
-            currentIndex={currentIndex}
-            onArrowClick={handleArrowClick}
-            onCircleClick={handleCircleClick}
-          />
+    <>
+      {favouritedProducts.length > 0 && (
+        <section className={styles.FavouritedProducts}>
+          <header className={styles.FavouritedProducts__header}>
+            <div>GET</div>
+            <div>READY</div>
+            <div>FOR</div>
+            <div>SUMMER</div>
+            <div>2024!</div>
+          </header>
+          <section className={styles.FavouritedProducts__productdetails}>
+            <ProductDetails
+              key={favouritedProducts[currentIndex].id}
+              details={favouritedProducts[currentIndex]}
+              direction={imageDirection}
+            />
+            <CarouselButtons
+              products={favouritedProducts}
+              currentIndex={currentIndex}
+              onArrowClick={handleArrowClick}
+              onCircleClick={handleCircleClick}
+            />
+          </section>
         </section>
-      </section>
-    )
+      )}
+    </>
   );
 };
 

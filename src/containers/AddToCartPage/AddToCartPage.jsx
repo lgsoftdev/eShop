@@ -101,7 +101,7 @@ const AddToCartPage = () => {
       }
 
       if (!hasStock) {
-        messageDivRef.current.innerText = 'No stock available.';
+        messageDivRef.current.innerText = 'No more stock available.';
         messageDivRef.current.classList.add(styles.message_red);
       } else {
         setCart(cartCopy);
