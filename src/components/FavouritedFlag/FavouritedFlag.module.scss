@@ -1,6 +1,17 @@
+@import '../src/UtilsStyles.module.scss';
+
 .FavouritedFlag {
-  & img {
-    margin-left: 5px;
-    padding: 10px;
+  &_no {
+    padding: 0 0 0 $px_small;
+  }
+
+  &_yes {
+    @extend .FavouritedFlag_no;
+    fill: red;
+  }
+
+  & button {
+    background-color: transparent;
+    border: none;
   }
 }

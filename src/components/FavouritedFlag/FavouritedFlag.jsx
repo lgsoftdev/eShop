@@ -1,5 +1,5 @@
-import faveYes from '../../assets/fave-yes.png';
-import faveNo from '../../assets/fave-no.png';
+import { HiOutlineHeart } from 'react-icons/hi';
+import { HiHeart } from 'react-icons/hi';
 import styles from './FavouritedFlag.module.scss';
 import { updateFavourited } from '../../services/data';
 import { CartContext } from '../../context/CartProvider';
@@ -12,7 +12,7 @@ const FavouritedFlag = ({ productId, isAFavourite }) => {
 
   const handleFavouriteClick = async (event) => {
     event.preventDefault();
-    const src = event.target.src;
+    const src = event.target.className.baseVal;
     let favourite = false;
     if (src.indexOf('no') > -1) favourite = true;
     await updateFavourited(productId, favourite);
@@ -24,9 +24,13 @@ const FavouritedFlag = ({ productId, isAFavourite }) => {
 
   return (
     <div className={styles.FavouritedFlag}>
-      <a href="#" onClick={handleFavouriteClick}>
-        <img src={favourited ? faveYes : faveNo} />
-      </a>
+      <button type="button" onClick={handleFavouriteClick}>
+        {favourited ? (
+          <HiHeart className={styles.FavouritedFlag_yes} size={30} />
+        ) : (
+          <HiOutlineHeart className={styles.FavouritedFlag_no} size={30} />
+        )}
+      </button>
     </div>
   );
 };

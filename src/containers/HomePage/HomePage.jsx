@@ -37,7 +37,7 @@ const HomePage = () => {
         </button>
         <img src={thebeach} alt="flip-flops on the beach" />
       </section>
-      {favourited.length > 0 && <FavouritedProducts products={favourited} />}
+      <FavouritedProducts products={favourited} />
       <section ref={listRef}>
         <ProductsList products={allProducts} />
       </section>
