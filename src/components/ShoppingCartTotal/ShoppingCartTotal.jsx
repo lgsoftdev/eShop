@@ -7,15 +7,14 @@ const ShoppingCartTotal = () => {
 
   useEffect(() => {
     if (cart.length > 0) {
-      const amounts = [];
-      for (let i = 0; i < cart.length; i++) {
-        const order = cart[i].order;
-        for (let j = 0; j < order.length; j++) {
-          amounts.push(Number(cart[i].price) * Number(order[j].quantity));
-        }
-      }
+      const amounts = cart.map(({ price, order }) => {
+        const itemTotals = order.map((item) => {
+          return Number(price) * Number(item.quantity);
+        });
+        return itemTotals;
+      });
 
-      const cartTotal = amounts.reduce((acc, amount) => {
+      const cartTotal = amounts.flat().reduce((acc, amount) => {
         acc = acc + amount;
         return acc;
       }, 0);
